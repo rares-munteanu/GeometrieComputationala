@@ -1,0 +1,2 @@
+# GeometrieComputationala
+ Proiect GC
