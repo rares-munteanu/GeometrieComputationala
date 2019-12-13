@@ -39,7 +39,8 @@ public:
     {
         if (GCPolygonTriClass->objectName().isEmpty())
             GCPolygonTriClass->setObjectName(QString::fromUtf8("GCPolygonTriClass"));
-        GCPolygonTriClass->resize(880, 632);
+        GCPolygonTriClass->resize(880, 630);
+        GCPolygonTriClass->setMouseTracking(true);
         centralWidget = new QWidget(GCPolygonTriClass);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         pushButton = new QPushButton(centralWidget);
@@ -47,7 +48,9 @@ public:
         pushButton->setGeometry(QRect(560, 50, 151, 51));
         textEdit = new QTextEdit(centralWidget);
         textEdit->setObjectName(QString::fromUtf8("textEdit"));
+        textEdit->setEnabled(true);
         textEdit->setGeometry(QRect(210, 30, 261, 41));
+        textEdit->setMouseTracking(false);
         textEdit_2 = new QTextEdit(centralWidget);
         textEdit_2->setObjectName(QString::fromUtf8("textEdit_2"));
         textEdit_2->setGeometry(QRect(210, 80, 261, 41));

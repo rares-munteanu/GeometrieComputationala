@@ -1,4 +1,5 @@
-﻿  moc GCPolygonTri.h
+﻿  uic GCPolygonTri.ui
+  moc GCPolygonTri.h
   GCPolygonTri.cpp
   main.cpp
   moc_GCPolygonTri.cpp

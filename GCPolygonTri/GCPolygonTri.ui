@@ -7,8 +7,11 @@
     <x>0</x>
     <y>0</y>
     <width>880</width>
-    <height>632</height>
+    <height>630</height>
    </rect>
+  </property>
+  <property name="mouseTracking">
+   <bool>true</bool>
   </property>
   <property name="windowTitle">
    <string>GCPolygonTri</string>
@@ -28,6 +31,9 @@
     </property>
    </widget>
    <widget class="QTextEdit" name="textEdit">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>210</x>
@@ -35,6 +41,9 @@
       <width>261</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="mouseTracking">
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QTextEdit" name="textEdit_2">
