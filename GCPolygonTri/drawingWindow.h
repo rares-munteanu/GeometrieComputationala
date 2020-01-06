@@ -21,10 +21,14 @@ public:
 	bool isDisplayed() {
 		return displayed;
 	}
-	void startTriangulation(QPointF*,int, QList<float>);
-	//void paintEvent(QPaintEvent* event);
+	void startTriangulation(QPointF*,int, QPointF);
+	void paintEvent(QPaintEvent* event);
 	void closeEvent(QCloseEvent* event);
 private:
 	Ui::Form ui;
 	bool displayed;
+protected:
+	QPointF* points;
+	int length;
+	QPointF pointA;
 };

@@ -7,16 +7,21 @@ drawingWindow::drawingWindow(QWidget* parent)
 	ui.setupUi(this);
 }
 
-void drawingWindow::startTriangulation(QPointF *polygonPoints,int numberPointsPolygon, QList <float> pointA) {
+void drawingWindow::startTriangulation(QPointF *polygonPoints,int numberPointsPolygon, QPointF pointA) {
+	this->points = polygonPoints;
+	this->length = numberPointsPolygon;
+	this->pointA = pointA;
 	this->show();
 }
 
-//void drawingWindow::paintEvent(QPaintEvent* event)
-//{
-//	QPainter painter(this);
-//	painter.setRenderHint(QPainter::Antialiasing);
-//	painter.setPen(Qt::black);
-//}
+void drawingWindow::paintEvent(QPaintEvent* event)
+{	
+	qDebug() << this->length;
+	QPainter painter(this);
+	painter.setRenderHint(QPainter::Antialiasing);
+	painter.setPen(Qt::black);
+	painter.drawPolygon(points, length);
+}
 
 void drawingWindow::closeEvent(QCloseEvent* event)
 {

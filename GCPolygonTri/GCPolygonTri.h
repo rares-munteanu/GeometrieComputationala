@@ -24,11 +24,19 @@ public slots:
 			QRegExp rx("[, ;\n#@]");
 			QStringList list = text.split(rx, QString::SkipEmptyParts);
 			QPointF* nums = new QPointF[list.length() / 2];
-			int numberPointsPolygon = list.length() / 2;
-			for (int i = 0; i < numberPointsPolygon; i+=2) {
-				nums[i / 2].setX( list[i].toFloat() );
-				nums[i / 2].setY( list[i + 1].toFloat()  );
+			int numberPointsPolygon = list.length() / 2, j = 0;
+			int listLength = list.length();
+			for (int i = 0; i < listLength; i+=2) {
+				nums[j].setX( list[i].toFloat() );
+				nums[j].setY( list[i + 1].toFloat() );
+				j++;
 			}
+
+			for (int i = 0; i < numberPointsPolygon; i++) {
+				qDebug() << nums[i].x() << " ";
+				qDebug() << nums[i].y() << "\n";
+			}
+
 			QStringList list2 = text2.split(rx, QString::SkipEmptyParts);
 			QList <float> nums2;
 			for (auto i : list2) {
@@ -44,8 +52,11 @@ public slots:
 				msgBox.exec();
 			}
 			else {
+				QPointF pointA;
+				pointA.setX( nums2[0]);
+				pointA.setY( nums2[1]);
 				sWindow->setDisplayed(true);
-				sWindow->startTriangulation(nums, numberPointsPolygon, nums2);
+				sWindow->startTriangulation(nums, numberPointsPolygon, pointA);
 			}
 		}
 	}
