@@ -31,9 +31,15 @@
     <ClCompile Include="GCPolygonTri.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="drawingWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="GCPolygonTri.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="drawingWindow.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>
@@ -41,10 +47,21 @@
     <QtUic Include="GCPolygonTri.ui">
       <Filter>Form Files</Filter>
     </QtUic>
+    <QtUic Include="drawingWindow.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="GCPolygonTri.qrc">
       <Filter>Resource Files</Filter>
     </QtRcc>
+    <QtRcc Include="drawingWindow.qrc">
+      <Filter>Resource Files</Filter>
+    </QtRcc>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="x64\Debug\uic\ui_drawingWindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

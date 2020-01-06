@@ -1,6 +1,5 @@
-﻿  uic GCPolygonTri.ui
-  moc GCPolygonTri.h
+﻿  moc GCPolygonTri.h
   GCPolygonTri.cpp
   main.cpp
   moc_GCPolygonTri.cpp
-  GCPolygonTri.vcxproj -> C:\Users\rares\Desktop\GeometrieComputationala\GCPolygonTri\x64\Debug\GCPolygonTri.exe
+  GCPolygonTri.vcxproj -> D:\Facultate\Facultate An 2\Semestrul 1\Geometrie computationala\GeometrieComputationala\GCPolygonTri\x64\Debug\GCPolygonTri.exe

@@ -2,56 +2,54 @@
 
 #include <QtWidgets/QMainWindow>
 #include "ui_GCPolygonTri.h"
-#include <QString>
-#include <QDebug>
-#include <QMessageBox>
-#include <QPolygon>
-#include <QPainter>
-#include <QPainterPath>
+#include <drawingWindow.h>
+#include <qdebug.h>
 
 class GCPolygonTri : public QMainWindow
 {
 	Q_OBJECT
-
+	drawingWindow* sWindow;
 public:
 	GCPolygonTri(QWidget *parent = Q_NULLPTR);
+	bool getStartedTry() {
+		return startedTry;
+	}
 public slots:
 	void showText() {
-		if (!startedTri) {
+		if (!sWindow->isDisplayed()) {
 			QString text = ui.textEdit->toPlainText();
 			QString text2 = ui.textEdit_2->toPlainText();
 
+			//parse the first textEdit
 			QRegExp rx("[, ;\n#@]");
 			QStringList list = text.split(rx, QString::SkipEmptyParts);
-			QList <float> nums;
-			for (int i = 0; i < list.size(); i++) {
-				nums.append(list.at(i).toFloat());
+			QPointF* nums = new QPointF[list.length() / 2];
+			int numberPointsPolygon = list.length() / 2;
+			for (int i = 0; i < numberPointsPolygon; i+=2) {
+				nums[i / 2].setX( list[i].toFloat() );
+				nums[i / 2].setY( list[i + 1].toFloat()  );
 			}
-			for (int i = 0; i < list.size(); i++) {
-				qDebug() << nums[i] << " ";
+			QStringList list2 = text2.split(rx, QString::SkipEmptyParts);
+			QList <float> nums2;
+			for (auto i : list2) {
+				nums2.append(i.toFloat());
 			}
-
-			if (nums.size() == 0 || nums.size() % 2 != 0) {
+			//check if the 2 textBoxes have the specified format
+			if (list.length() == 0 || list.length() % 2 != 0 || nums2.size() != 2) {
 				QMessageBox msgBox;
-				msgBox.setText("Date introduse gresit");
+				msgBox.setIcon(QMessageBox::Warning);
+				msgBox.setStyleSheet("QLabel{width: 170px; height: 100px; font-size: 24px;}");
+				msgBox.setText("Date introduse gresit!");
 				msgBox.setWindowTitle("Wrong Input");
 				msgBox.exec();
 			}
-			QPolygon polygon;
-			for (int i = 0; i < nums.size() - 1; i+=2) {
-				polygon << QPoint(nums[i], nums[i + 1]);
+			else {
+				sWindow->setDisplayed(true);
+				sWindow->startTriangulation(nums, numberPointsPolygon, nums2);
 			}
-			QPainter painter(this);
-			QPen pen(Qt::red, 3, Qt::DashDotLine, Qt::RoundCap, Qt::RoundJoin);
-			painter.setPen(pen);
-			painter.drawPolygon(polygon);
-			//qDebug() << list;
-
-			//qDebug() << text << text2;
-			//startedTri = true;
 		}
 	}
 private:
 	Ui::GCPolygonTriClass ui;
-	bool startedTri = false;
+	bool startedTry = false;
 };

@@ -1,6 +1,7 @@
 #include "GCPolygonTri.h"
+#include "drawingWindow.h"
 #include <QtWidgets/QApplication>
-
+#include <qdebug.h>
 
 int main(int argc, char *argv[])
 {

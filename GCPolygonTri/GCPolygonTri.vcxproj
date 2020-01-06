@@ -88,6 +88,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="drawingWindow.cpp" />
     <ClCompile Include="GCPolygonTri.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
@@ -95,10 +96,18 @@
     <QtMoc Include="GCPolygonTri.h" />
   </ItemGroup>
   <ItemGroup>
+    <QtUic Include="drawingWindow.ui" />
     <QtUic Include="GCPolygonTri.ui" />
   </ItemGroup>
   <ItemGroup>
+    <QtRcc Include="drawingWindow.qrc" />
     <QtRcc Include="GCPolygonTri.qrc" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="drawingWindow.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="x64\Debug\uic\ui_drawingWindow.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
