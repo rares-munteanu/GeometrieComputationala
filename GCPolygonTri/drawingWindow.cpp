@@ -11,6 +11,11 @@ void drawingWindow::startTriangulation(QPointF *polygonPoints,int numberPointsPo
 	this->points = polygonPoints;
 	this->length = numberPointsPolygon;
 	this->pointA = pointA;
+	
+	for (int i = 0; i < length; i++) {
+
+	}
+
 	this->show();
 }
 

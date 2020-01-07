@@ -21,7 +21,7 @@ public slots:
 			QString text2 = ui.textEdit_2->toPlainText();
 
 			//parse the first textEdit
-			QRegExp rx("[, ;\n#@]");
+			QRegExp rx("[, ;\n#@\t]");
 			QStringList list = text.split(rx, QString::SkipEmptyParts);
 			QPointF* nums = new QPointF[list.length() / 2];
 			int numberPointsPolygon = list.length() / 2, j = 0;
@@ -43,7 +43,7 @@ public slots:
 				nums2.append(i.toFloat());
 			}
 			//check if the 2 textBoxes have the specified format
-			if (list.length() == 0 || list.length() % 2 != 0 || nums2.size() != 2) {
+			if (list.length() < 6 || list.length() % 2 != 0 || nums2.size() != 2) {
 				QMessageBox msgBox;
 				msgBox.setIcon(QMessageBox::Warning);
 				msgBox.setStyleSheet("QLabel{width: 170px; height: 100px; font-size: 24px;}");
