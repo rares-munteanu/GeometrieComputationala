@@ -31,12 +31,6 @@ public slots:
 				nums[j].setY( list[i + 1].toFloat() );
 				j++;
 			}
-
-			for (int i = 0; i < numberPointsPolygon; i++) {
-				qDebug() << nums[i].x() << " ";
-				qDebug() << nums[i].y() << "\n";
-			}
-
 			QStringList list2 = text2.split(rx, QString::SkipEmptyParts);
 			QList <float> nums2;
 			for (auto i : list2) {
