@@ -80,6 +80,16 @@ void drawingWindow::startTriangulation(QPointF *polygonPoints,int numberPointsPo
 		pointATriangle[1] = polyPointsList[(currentPoint + 1) % listLength];
 		pointATriangle[2] = polyPointsList[(currentPoint + 2) % listLength];
 	}
+
+	float minX = 0, minY = 0;
+	for (int i = 0; i < length; i++) {
+		if (points[i].x() < 0 && -points[i].x() > minX)
+			minX = -points[i].x();
+		if (points[i].y() < 0 && -points[i].y() > minY)
+			minY = -points[i].y();
+	}
+	offset.setX(minX + 40);
+	offset.setY(minY + 40);
 	this->show();
 }
 
@@ -87,10 +97,10 @@ void drawingWindow::paintEvent(QPaintEvent* event)
 {
 	bool pointOnEdge = false;
 	QPainter painter(this);
+	painter.translate(offset);
 	painter.setRenderHint(QPainter::Antialiasing);
 	painter.setPen(QPen(Qt::black, 3));
 	painter.drawPolygon(points, length);
-	
 	painter.setPen(QPen(Qt::blue, 3));
 	painter.drawLines(triangLines, nrOfLines);
 	if (correspondingTriangleFound) {

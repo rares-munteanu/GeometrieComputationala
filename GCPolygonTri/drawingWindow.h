@@ -101,4 +101,5 @@ protected:
 	QLineF* triangLines;
 	int nrOfLines;
 	QPointF* pointATriangle;
+	QPointF offset;
 };
