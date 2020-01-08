@@ -20,7 +20,7 @@ void drawingWindow::startTriangulation(QPointF *polygonPoints,int numberPointsPo
 	bool earFound = true;
 	correspondingTriangleFound = false;
 	//poligon cu n varfuri => n - 2 triunghiuri => n-3 laturi noi desenate
-	while (polyPointsList.length() > 2) {
+	while (polyPointsList.length() > 3) {
 	    listLength = polyPointsList.length();
 		if (position(polyPointsList[currentPoint], polyPointsList[(currentPoint + 1) % listLength], 
 			polyPointsList[(currentPoint + 2) % listLength]) < 0) { // inseamna ca punctul de pe pozitia currentPoint + 1 este convex
@@ -48,15 +48,15 @@ void drawingWindow::startTriangulation(QPointF *polygonPoints,int numberPointsPo
 							isBetween(polyPointsList[currentPoint], polyPointsList[(currentPoint + 2) % listLength], pointA) &&
 							pointA != polyPointsList[currentPoint] && pointA != polyPointsList[(currentPoint + 1) % listLength] &&
 							pointA != polyPointsList[(currentPoint + 2) % listLength]) {
-							isOnTriangleInsideEdge = true;
-							pointAOnTriangleEdge.setP1(polyPointsList[currentPoint]);
-							pointAOnTriangleEdge.setP2(polyPointsList[(currentPoint + 2) % listLength]);
-								/*Punctul A apartine celor 2 triunghiuri adiacente cu segmentul pi pi+2
-								correspondingTriangleFound = true;
-								pointATriangle = new QPointF[3];
-								pointATriangle[0] = polyPointsList[currentPoint];
-								pointATriangle[1] = polyPointsList[(currentPoint + 1) % listLength];
-								pointATriangle[2] = polyPointsList[(currentPoint + 2) % listLength];*/
+								isOnTriangleInsideEdge = true;
+								pointAOnTriangleEdge.setP1(polyPointsList[currentPoint]);
+								pointAOnTriangleEdge.setP2(polyPointsList[(currentPoint + 2) % listLength]);
+									/*Punctul A apartine celor 2 triunghiuri adiacente cu segmentul pi pi+2
+									correspondingTriangleFound = true;
+									pointATriangle = new QPointF[3];
+									pointATriangle[0] = polyPointsList[currentPoint];
+									pointATriangle[1] = polyPointsList[(currentPoint + 1) % listLength];
+									pointATriangle[2] = polyPointsList[(currentPoint + 2) % listLength];*/
 						}
 					}
 					triangLines[noTriangles].setLine(polyPointsList[currentPoint].x(),polyPointsList[currentPoint].y(),
@@ -68,8 +68,16 @@ void drawingWindow::startTriangulation(QPointF *polygonPoints,int numberPointsPo
 		}
 		else 
 			currentPoint = (currentPoint + 1) % listLength;
+	}	
+	nrOfLines = noTriangles;
+	if (isInside(polyPointsList[currentPoint], polyPointsList[(currentPoint + 1) % listLength],
+		polyPointsList[(currentPoint + 2) % listLength], pointA)) {
+		correspondingTriangleFound = true;
+		pointATriangle = new QPointF[3];
+		pointATriangle[0] = polyPointsList[currentPoint];
+		pointATriangle[1] = polyPointsList[(currentPoint + 1) % listLength];
+		pointATriangle[2] = polyPointsList[(currentPoint + 2) % listLength];
 	}
-	nrOfLines = noTriangles - 1;
 	this->show();
 }
 
@@ -80,6 +88,7 @@ void drawingWindow::paintEvent(QPaintEvent* event)
 	painter.setRenderHint(QPainter::Antialiasing);
 	painter.setPen(QPen(Qt::black, 3));
 	painter.drawPolygon(points, length);
+	
 	painter.setPen(QPen(Qt::blue, 3));
 	painter.drawLines(triangLines, nrOfLines);
 	if (correspondingTriangleFound) {
@@ -96,6 +105,16 @@ void drawingWindow::paintEvent(QPaintEvent* event)
 		painter.drawPoint(pointA);
 		QStaticText pointAText("A");
 		painter.drawStaticText(pointA.x() - 5, pointA.y() - 25, pointAText);
+
+
+		//scris coordonatele
+		painter.setPen(QPen(Qt::magenta, 3));
+		painter.setFont(QFont("times", 10));
+		for (int i = 0; i < length; i++) {
+			painter.drawText(QPointF(points[i].x() - 15, points[i].y() - 10), QString("(") +
+				QString::number(points[i].x()) + QString(", ") + QString::number(points[i].y()) + QString(")"));
+		}
+
 		if (!msgBoxDisplayed) {
 			QMessageBox msgBox;
 			msgBox.setText(QString("Punctul A(") + QString::number(pointA.x()) + QString(", ") + QString::number(pointA.y()) + QString(") se afla in interiorul poligonului in triunghiul format de punctele:  (") + QString::number(pointATriangle[0].x()) +
@@ -117,7 +136,13 @@ void drawingWindow::paintEvent(QPaintEvent* event)
 		painter.drawStaticText(pointA.x() - 5, pointA.y() - 25, pointAText);
 
 		if (!msgBoxDisplayed) {
-			 
+			 	//scris coordonatele
+				painter.setPen(QPen(Qt::magenta, 3));
+				painter.setFont(QFont("times", 10));
+				for (int i = 0; i < length; i++) {
+					painter.drawText(QPointF(points[i].x() - 15, points[i].y() - 10), QString("(") +
+				QString::number(points[i].x()) + QString(", ") + QString::number(points[i].y()) + QString(")"));
+			}		
 			//Punctul A se aflsa pe un segment interior poligonului care este adiacent cu 2 triunghiuri
 			if (isOnTriangleInsideEdge) {
 				QMessageBox msgBox;
@@ -146,6 +171,7 @@ void drawingWindow::paintEvent(QPaintEvent* event)
 				}
 			}
 			if (pointOnEdge == false && isOnTriangleInsideEdge == false) {
+																																			
 				QMessageBox msgBox;
 				msgBox.setText(QString("Punctul A(") + QString::number(pointA.x()) + QString(", ") + QString::number(pointA.y()) + QString(") se afla in exteriorul poligonului."));
 				msgBox.setWindowTitle("Point A");
@@ -153,6 +179,13 @@ void drawingWindow::paintEvent(QPaintEvent* event)
 				msgBoxDisplayed = true;
 			}
 		}
+	}
+	//scris coordonatele
+	painter.setPen(QPen(Qt::magenta, 3));
+	painter.setFont(QFont("times", 10));
+	for (int i = 0; i < length; i++) {
+		painter.drawText(QPointF(points[i].x() - 15, points[i].y() - 10), QString("(") +
+			QString::number(points[i].x()) + QString(", ") + QString::number(points[i].y()) + QString(")"));
 	}
 }
 
