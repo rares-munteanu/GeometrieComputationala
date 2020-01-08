@@ -1,2 +1,5 @@
-﻿  drawingWindow.cpp
+﻿  moc drawingWindow.h
+  drawingWindow.cpp
+  moc_GCPolygonTri.cpp
+  moc_drawingWindow.cpp
   GCPolygonTri.vcxproj -> C:\Users\rares\Desktop\GeometrieComputationala\GCPolygonTri\x64\Debug\GCPolygonTri.exe
