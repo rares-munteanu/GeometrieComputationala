@@ -21,6 +21,7 @@ void drawingWindow::startTriangulation(QPointF *polygonPoints,int numberPointsPo
 	correspondingTriangleFound = false;
 	//poligon cu n varfuri => n - 2 triunghiuri => n-3 laturi noi desenate
 	while (polyPointsList.length() > 3) {
+		qDebug() << currentPoint;
 	    listLength = polyPointsList.length();
 		if (position(polyPointsList[currentPoint], polyPointsList[(currentPoint + 1) % listLength], 
 			polyPointsList[(currentPoint + 2) % listLength]) < 0) { // inseamna ca punctul de pe pozitia currentPoint + 1 este convex
@@ -70,11 +71,12 @@ void drawingWindow::startTriangulation(QPointF *polygonPoints,int numberPointsPo
 			currentPoint = (currentPoint + 1) % listLength;
 	}	
 	nrOfLines = noTriangles;
-	if (isInside(polyPointsList[currentPoint], polyPointsList[(currentPoint + 1) % listLength],
+	listLength = polyPointsList.length();
+	if (isInside(polyPointsList[currentPoint % listLength], polyPointsList[(currentPoint + 1) % listLength],
 		polyPointsList[(currentPoint + 2) % listLength], pointA)) {
 		correspondingTriangleFound = true;
 		pointATriangle = new QPointF[3];
-		pointATriangle[0] = polyPointsList[currentPoint];
+		pointATriangle[0] = polyPointsList[currentPoint % listLength];
 		pointATriangle[1] = polyPointsList[(currentPoint + 1) % listLength];
 		pointATriangle[2] = polyPointsList[(currentPoint + 2) % listLength];
 	}
