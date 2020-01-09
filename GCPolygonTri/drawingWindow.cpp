@@ -120,8 +120,8 @@ void drawingWindow::paintEvent(QPaintEvent* event)
 
 
 		//scris coordonatele
-		painter.setPen(QPen(Qt::magenta, 3));
-		painter.setFont(QFont("times", 10));
+		painter.setPen(QPen(Qt::green, 3));
+		painter.setFont(QFont("times", 10, QFont::Bold, true));
 		for (int i = 0; i < length; i++) {
 			painter.drawText(QPointF(points[i].x() - 15, points[i].y() - 10), QString("(") +
 				QString::number(points[i].x()) + QString(", ") + QString::number(points[i].y()) + QString(")"));
@@ -149,8 +149,8 @@ void drawingWindow::paintEvent(QPaintEvent* event)
 
 		if (!msgBoxDisplayed) {
 			 	//scris coordonatele
-				painter.setPen(QPen(Qt::magenta, 3));
-				painter.setFont(QFont("times", 10));
+				painter.setPen(QPen(Qt::green, 3));
+				painter.setFont(QFont("times", 10, QFont::Bold, true));
 				for (int i = 0; i < length; i++) {
 					painter.drawText(QPointF(points[i].x() - 15, points[i].y() - 10), QString("(") +
 				QString::number(points[i].x()) + QString(", ") + QString::number(points[i].y()) + QString(")"));
@@ -193,8 +193,8 @@ void drawingWindow::paintEvent(QPaintEvent* event)
 		}
 	}
 	//scris coordonatele
-	painter.setPen(QPen(Qt::magenta, 3));
-	painter.setFont(QFont("times", 10));
+	painter.setPen(QPen(Qt::green, 3));
+	painter.setFont(QFont("times", 10, QFont::Bold, true));
 	for (int i = 0; i < length; i++) {
 		painter.drawText(QPointF(points[i].x() - 15, points[i].y() - 10), QString("(") +
 			QString::number(points[i].x()) + QString(", ") + QString::number(points[i].y()) + QString(")"));

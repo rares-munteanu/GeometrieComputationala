@@ -58,7 +58,7 @@
      <bool>true</bool>
     </property>
     <property name="placeholderText">
-     <string>Introduceti coordonatelui poligonului in ordine normala</string>
+     <string>Introduceti coordonatele poligonului in ordine normala, in sensul acelor de ceasornic</string>
     </property>
    </widget>
    <widget class="QTextEdit" name="textEdit_2">
@@ -77,7 +77,7 @@
      <bool>true</bool>
     </property>
     <property name="placeholderText">
-     <string>Introduceti coordonatelui lui A</string>
+     <string>Introduceti coordonate lui A</string>
     </property>
    </widget>
    <widget class="QTextBrowser" name="textBrowser">
