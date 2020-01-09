@@ -93,8 +93,8 @@ public:
 #ifndef QT_NO_TOOLTIP
         textEdit->setToolTip(QApplication::translate("GCPolygonTriClass", "<html><head/><body><p><br/></p></body></html>", nullptr));
 #endif // QT_NO_TOOLTIP
-        textEdit->setPlaceholderText(QApplication::translate("GCPolygonTriClass", "Introduceti coordonatelui poligonului in ordine normala", nullptr));
-        textEdit_2->setPlaceholderText(QApplication::translate("GCPolygonTriClass", "Introduceti coordonatelui lui A", nullptr));
+        textEdit->setPlaceholderText(QApplication::translate("GCPolygonTriClass", "Introduceti coordonatele poligonului in ordine normala, in sensul acelor de ceasornic", nullptr));
+        textEdit_2->setPlaceholderText(QApplication::translate("GCPolygonTriClass", "Introduceti coordonate lui A", nullptr));
         textBrowser->setHtml(QApplication::translate("GCPolygonTriClass", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"

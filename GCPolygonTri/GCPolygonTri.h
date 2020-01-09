@@ -2,7 +2,7 @@
 
 #include <QtWidgets/QMainWindow>
 #include "ui_GCPolygonTri.h"
-#include <drawingWindow.h>
+#include "drawingWindow.h"
 #include <qdebug.h>
 
 class GCPolygonTri : public QMainWindow
